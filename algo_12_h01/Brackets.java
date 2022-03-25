@@ -29,7 +29,7 @@ public class Brackets {
 					return false;
 				
 				if(open.indexOf(stack.pop()) != closed.indexOf(c)) { // ueberprueft ob oeffnende und schliessende Klammer zusammenpassen
-					return false;									 // und nimmt letzte oeffnende Klammer vom Stack
+					return false;                                // und nimmt letzte oeffnende Klammer vom Stack
 				}
 			}
 		}

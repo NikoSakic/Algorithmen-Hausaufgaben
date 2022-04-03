@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-
 /**
  * 
  * @author Niko Sakic
@@ -48,8 +47,8 @@ public class MyHashSet<K> {
 	
 	/**
 	 * Die Methode erhaelt ein Element und fuegt es dem HashSet hinzu.
-	 * @param element
-	 * @return
+	 * @param element Uebergebenes Element, soll dem HashSet hinzugefuegt werden
+	 * @return boolean Gibt an ob sich das Element bereits in der Liste befindet
 	 */
 	public boolean add(K element) {
 		int index = hashfunction(element,teillisten.length);
@@ -57,13 +56,20 @@ public class MyHashSet<K> {
 			return true;
 		}
 		teillisten[index].add(element);
-		// add check for elemente/teillisten
+		// ueberprueft ob das HashSet vergroeßert werden muss
 		if((double)elementCount()/teillisten.length >= 2.0) {
-			reHash();
+			reHash(); // ruft Methode auf, die die Teillisten verdoppelt
 		}
 		return false;
 	}
 	
+	/**
+	 * Die Methode entfernt das uebergebene Element aus dem HashSet.
+	 * Die Methode gibt true zurueck, wenn das Element im HashSet vorhanden war
+	 * und false wenn nicht.
+	 * @param element Uebergebenes Element, das geloescht werden soll
+	 * @return boolean 
+	 */
 	public boolean delete(K element) {
 		int index = hashfunction(element,teillisten.length);
 		if(teillisten[index].contains(element)) {
@@ -71,18 +77,27 @@ public class MyHashSet<K> {
 			return true;
 		}
 		return false;
-		// alternativ return teillisten[index].remove(element);
 	}
 	
+	/**
+	 * Die Methode ueberprueft ob das uebergebene Element im HashSet liegt.
+	 * @param element Uebergebenes Element
+	 * @return boolean
+	 */
 	public boolean contains(K element) {
 		return teillisten[hashfunction(element,teillisten.length)].contains(element);
 	}
 	
+	/**
+	 * Methode, die die Anzahl der Teillisten im HashSet verdoppelt.
+	 */
 	private void reHash() {
+		// deklariert und initialisert ein neues Feld von ArrayList<K>
 		ArrayList<K>[] nlisten = new ArrayList[teillisten.length*2];
 		for (int i = 0; i < nlisten.length; i++) {
             nlisten[i] = new ArrayList<K>();
         }
+		// fuegt die Elemente der alten Teillisten in die neuen ein
 		Arrays.stream(teillisten).forEach((ArrayList<K> l) -> {l.stream().forEach((K k) -> {nlisten[hashfunction(k,nlisten.length)].add(k);} );} );
 //		for(ArrayList<K> list : teillisten) {
 //			for(int i = 0; i < list.size(); i++) {
@@ -94,8 +109,14 @@ public class MyHashSet<K> {
 		teillisten = nlisten;
 	}
 	
+	/**
+	 * Die Methode erzeugt eine ArrayList, die die Elemente aller
+	 * Teillisten beinhaelt.
+	 * @return ArrayList<K> Rueckgabeliste
+	 */
 	public ArrayList<K> getElements(){
 		ArrayList<K> list = new ArrayList<K>();
+		// geht alle Teillisten des Feldes durch und fuegt ihre Elemente der neuen ArrayList hinzu
 		Arrays.stream(teillisten).forEach((ArrayList<K> l) -> {l.stream().forEach((K k) -> {list.add(k);} );} );
 //		for(ArrayList<K> l : teillisten) {
 //			l.stream().forEach((K k) -> {list.add(k);} );

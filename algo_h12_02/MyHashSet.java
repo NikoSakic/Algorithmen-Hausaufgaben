@@ -5,7 +5,10 @@ import java.util.Collections;
 /**
  * 
  * @author Niko Sakic
- *
+ * Die Klasse stellt ein HashSet dar, in dem Elemente in einem Feld von
+ * ArrayListen gespeichert werden. In welcher Teilliste ein Element 
+ * abgelegt wird, wird mit einer HashFunktion bestimmt.
+ * Befinden sich zu viele Elemente im HashSet wird die Anzahl der Teillisten verdoppelt.
  * @param <K> Generic, Typ der in der Klasse gespeichert wird
  */
 public class MyHashSet<K> {

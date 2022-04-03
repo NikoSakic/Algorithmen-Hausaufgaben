@@ -49,9 +49,11 @@ public class MyHashSet<K> {
 	}
 	
 	/**
-	 * Die Methode erhaelt ein Element und fuegt es dem HashSet hinzu.
+	 * Die Methode erhaelt ein Element und fuegt es dem HashSet hinzu
+	 * und gibt false zurueck, falls es noch nicht im HashSet enthalten ist.
+	 * Befindet sich das Element bereits im HashSet wird true zurueckgegeben.
 	 * @param element Uebergebenes Element, soll dem HashSet hinzugefuegt werden
-	 * @return boolean Gibt an ob sich das Element bereits in der Liste befindet
+	 * @return boolean
 	 */
 	public boolean add(K element) {
 		int index = hashfunction(element,teillisten.length);

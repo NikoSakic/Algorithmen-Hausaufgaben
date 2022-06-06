@@ -1,0 +1,10 @@
+Algo Hausaufgabe 11
+Aufgabe 1 
+a)
+Fuer das Berechnen des Mittelwerts in konstanter Zeit muss in jedem Knoten, die Anzahl der Knoten im Unterbaum
+und die Summe aller Werte im Unterbaum gespeichert werden.
+Beim Einfügen wird bei allen Knoten auf dem Pfad zum neuen Knoten die Anzahl inkrementiert und die Summe um den neuen Wert erhoeht.
+Der neue Knoten wird mit der Anzahl 1 und seinem eigenen Wert als Summe initialisiert, da der Knoten die Wurzel eines leeren Unterbaums
+ist.
+Beim loeschen wird für jeden Knoten auf dem Pfad zum gelöschten Knoten die Anzahl dekrementiert und die Summe um den Wert des
+geloeschten Knotens reduziert.
